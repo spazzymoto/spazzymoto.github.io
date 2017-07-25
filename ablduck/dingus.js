@@ -6,6 +6,12 @@ var htmlwriter = new commonmark.HtmlRenderer({ sourcepos: false });
 var xmlwriter = new commonmark.XmlRenderer({ sourcepos: false });
 var reader = new commonmark.Parser();
 
+var tagTemplate = "( *?[TOKEN]\\s*?([\\s\\S]*?))(?:\\n\\s*?@author|\\n\\s*?@internal|\\n\\s*?@deprecated|\\n\\s*?@param|\\n\\s*?@return|$)";
+var tags        = ["@author", "@internal", "@deprecated", "@param", "@return"];
+var tagRegex    = {};
+
+var linkTag = new RegExp("{@link +(\\S+) *([\\s\\S]*?)}", "g");
+
 var commentLeadingAstrix = new RegExp("^\\s*\\*(?: |)(\\n?|[\\s\\S]+?)", "mg");
 var commentTagsAdd = new RegExp("^", "mg");
 
@@ -68,6 +74,15 @@ var parseAndRender = function() {
     else 
         var comment = textarea.val();
 
+    for (var i = tags.length - 1; i >= 0; i--) {
+        comment = comment.replace(tagRegex[tags[i]], "");   
+    }
+
+
+    comment = comment.replace(linkTag, function(complete_match, cls, link_text) {
+        return "[" + (link_text || cls) + "](#)";
+    });
+
     var parsed = reader.parse(comment);
     var endTime = new Date().getTime();
     var parseTime = endTime - startTime;
@@ -83,6 +98,12 @@ $(document).ready(function() {
     
     if (initial_text) {
         textarea.val(initial_text);
+    }
+
+    for (var i = tags.length - 1; i >= 0; i--) {
+        
+        tagRegex[tags[i]] = new RegExp(tagTemplate.replace("[TOKEN]",  tags[i]), "g");
+   
     }
 
     parseAndRender();

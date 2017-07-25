@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ABLDuck Dingus</title>
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="dingus.css" rel="stylesheet">
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+  <script src="lodash.min.js"></script>
+  <script src="commonmark.js"></script>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h1 class="title">ABLDuck Dingus</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <p id="text-controls">
+        <a id="clear-text-box">clear</a>&nbsp;&nbsp;&nbsp;
+      <label for="commentTags">Show Comment Tags</label>
+      <input type="checkbox" id="commentTags" checked/>&nbsp;&nbsp;&nbsp;
+      <label for="indent">Indent</label>
+      <input type="number" id="indent" value="0" style="width: 50px"/>
+      </p>
+      <br>
+      <textarea id="text">/**
+ * ## Example
+ * This is an example
+ * 
+ *     DEFINE VARIABLE cText AS CHARACTER NO-UNDO.
+ * 
+ * #### Use with caution
+ */</textarea>
+      <ul id="warnings"></ul>
+    </div>
+    <div class="col-md-6">
+    <br><br>
+      <div class="tab-content">
+        <div id="preview" class="tab-pane active">
+          <iframe src="preview.html" frameborder="0" sandbox="allow-same-origin"></iframe>
+        </div>
+      </div>
+      <div class="timing">Parsed in <span class="timing" id="parsetime"></span>
+        ms.  Rendered in <span class="timing" id="rendertime"></span> ms.
+      </div>
+    </div>
+  </div>
+</div>
+<script src="dingus.js"></script>
+</body>
+</html>

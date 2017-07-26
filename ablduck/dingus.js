@@ -5,12 +5,15 @@ var writer = new commonmark.HtmlRenderer({ sourcepos: true });
 var htmlwriter = new commonmark.HtmlRenderer({ sourcepos: false });
 var xmlwriter = new commonmark.XmlRenderer({ sourcepos: false });
 var reader = new commonmark.Parser();
+var isInternal = false;
+var deprecated = null;
 
 var tagTemplate = "( *?[TOKEN]\\s*?([\\s\\S]*?))(?:\\n\\s*?@author|\\n\\s*?@internal|\\n\\s*?@deprecated|\\n\\s*?@param|\\n\\s*?@return|$)";
 var tags        = ["@author", "@internal", "@deprecated", "@param", "@return"];
 var tagRegex    = {};
 
 var linkTag = new RegExp("{@link +(\\S+) *([\\s\\S]*?)}", "g");
+var deprecatedTag = new RegExp("@deprecated\\s+?(\\S+?)\\s+?([\\s\\S]*)");
 
 var commentLeadingAstrix = new RegExp("^\\s*\\*(?: |)(\\n?|[\\s\\S]+?)", "mg");
 var commentTagsAdd = new RegExp("^", "mg");
@@ -61,6 +64,13 @@ var render = function(parsed) {
     var endTime = new Date().getTime();
     var renderTime = endTime - startTime;
     var preview = $("#preview iframe").contents().find('.doc-contents');
+
+    if (isInternal)
+        result = '<div class="rounded-box private-box"><p><strong>NOTE:</strong>This is a private [method,property,class,constructor,event] for internal use by the framework. Don\'t rely on its existence.</p></div>' + result;
+    if (deprecated)
+        result = '<div class="rounded-box deprecated-box deprecated-tag-box"><p>This [method,property,class,constructor,event] has been <strong>deprected</strong> since [VERSION]</p><p>[MESSAGE]</p></div><br>'.replace("[VERSION]", deprecated[0]).replace("[MESSAGE]", deprecated[1]) + result;
+
+
     preview.get(0).innerHTML = result;
     $("#rendertime").text(renderTime);
 };
@@ -74,14 +84,30 @@ var parseAndRender = function() {
     else 
         var comment = textarea.val();
 
+    comment = comment.replace(linkTag, function(complete_match, cls, link_text) {
+        return "<a href='#'>" + (link_text || cls) + "</a>";
+    });
+
+    isInternal = false;
+    deprecated = null;
+
     for (var i = tags.length - 1; i >= 0; i--) {
+        var match = comment.match(tagRegex[tags[i]]);
+        if (match) {
+            switch (tags[i]) {
+                case '@internal':
+                    isInternal = true;
+                    break;
+                case '@deprecated':
+                    var dep = match[0].match(deprecatedTag);
+                    deprecated = [];
+                    deprecated.push(dep[1]);
+                    deprecated.push(dep[2]);
+                    break;
+            }
+        }
         comment = comment.replace(tagRegex[tags[i]], "");   
     }
-
-
-    comment = comment.replace(linkTag, function(complete_match, cls, link_text) {
-        return "[" + (link_text || cls) + "](#)";
-    });
 
     var parsed = reader.parse(comment);
     var endTime = new Date().getTime();

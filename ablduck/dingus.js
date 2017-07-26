@@ -173,7 +173,15 @@ $(document).ready(function() {
     parseWholeComment();
 
     $("#clear-text-box").click(function() {
-        textarea.val('');
+
+        if ($("#commentTags").prop('checked')) {
+            var padding = "".padStart(parseInt($("#indent").val(), " "));
+
+            textarea.val(padding + '/**\n' + padding + ' * \n' + padding + ' */');
+        } else {
+            textarea.val('');
+        }
+
         parseWholeComment();
     });
 

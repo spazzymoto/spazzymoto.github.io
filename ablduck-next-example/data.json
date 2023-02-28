@@ -1,0 +1,253 @@
+[
+  {
+    "className": "ABLDuck.Core.Builder",
+    "inherits": "ABLDuck.Core.PrivateData",
+    "abstract": false,
+    "final": false,
+    "interface": false,
+    "serializable": false,
+    "enum": false,
+    "useWidgetPool": false,
+    "interfaces": [
+      "ABLDuck.Core.IPrivateData"
+    ],
+    "comments": [
+      "## Purpose",
+      "The purpose of this class is to test the new version of ABLDuck.",
+      "",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ",
+      "eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "Quam id leo in vitae turpis massa. ",
+      "",
+      "Aliquam malesuada bibendum arcu vitae elementum curabitur. ",
+      "Sit amet justo donec enim diam vulputate ut. Et netus et malesuada ",
+      "fames ac turpis. Purus faucibus ornare suspendisse sed nisi ",
+      "lacus sed. Massa sapien faucibus et molestie ac feugiat sed ",
+      "lectus vestibulum. Augue ut lectus arcu bibendum. ",
+      "",
+      "## Example",
+      "",
+      "    DEFINE VARIABLE oBuilder AS ABLDuck.Core.Builder NO-UNDO.",
+      "    ",
+      "    ASSIGN oBuilder = NEW ABLDuck.Core.Builder().",
+      "",
+      "@author John Doe",
+      ""
+    ],
+    "methods": [],
+    "constructors": [
+      {
+        "name": "Builder",
+        "signature": "Builder()",
+        "returnType": "VOID",
+        "abstract": false,
+        "static": false,
+        "extent": 0,
+        "modifier": "public",
+        "parameters": []
+      }
+    ],
+    "destructors": [],
+    "properties": [],
+    "tables": []
+  },
+  {
+    "className": "ABLDuck.Core.IPrivateData",
+    "inherits": "Progress.Lang.Object",
+    "abstract": false,
+    "final": false,
+    "interface": true,
+    "serializable": false,
+    "enum": false,
+    "useWidgetPool": false,
+    "interfaces": [],
+    "methods": [],
+    "constructors": [],
+    "destructors": [],
+    "properties": [
+      {
+        "name": "PrivateData",
+        "type": "CHARACTER",
+        "modifier": "public"
+      }
+    ],
+    "tables": []
+  },
+  {
+    "className": "ABLDuck.Core.PrivateData",
+    "inherits": "Progress.Lang.Object",
+    "abstract": true,
+    "final": false,
+    "interface": false,
+    "serializable": false,
+    "enum": false,
+    "useWidgetPool": false,
+    "interfaces": [],
+    "comments": [
+      "## Purpose",
+      "The purpose of this class is to allow classes to have private data",
+      "",
+      "@author John Doe",
+      ""
+    ],
+    "methods": [],
+    "constructors": [
+      {
+        "name": "PrivateData",
+        "signature": "PrivateData()",
+        "returnType": "VOID",
+        "abstract": false,
+        "static": false,
+        "extent": 0,
+        "modifier": "public",
+        "parameters": []
+      }
+    ],
+    "destructors": [],
+    "properties": [
+      {
+        "name": "PrivateData",
+        "type": "CHARACTER",
+        "modifier": "public"
+      }
+    ],
+    "tables": []
+  },
+  {
+    "className": "Utilities",
+    "inherits": "Progress.Lang.Object",
+    "abstract": false,
+    "final": false,
+    "interface": false,
+    "serializable": false,
+    "enum": false,
+    "useWidgetPool": false,
+    "interfaces": [],
+    "comments": [
+      "This utilities class contains a few static methods and properties ",
+      "that will make your life easier.",
+      "",
+      "    MESSAGE \"Framework Version -> \" Utilities:Version."
+    ],
+    "methods": [
+      {
+        "name": "getPropath",
+        "signature": "getPropath()",
+        "returnType": "CHARACTER",
+        "abstract": false,
+        "static": true,
+        "extent": 0,
+        "modifier": "public",
+        "comments": [
+          "This method will return the current sessions PROPATH value.",
+          "There is no reason for this to be a static method.",
+          "",
+          "    MESSAGE \"PROPATH ->\" Utilities:getPropath().",
+          "",
+          "@returns The session PROPATH."
+        ],
+        "parameters": []
+      },
+      {
+        "name": "setPropath",
+        "signature": "setPropath(IC)",
+        "returnType": "VOID",
+        "abstract": false,
+        "static": true,
+        "extent": 0,
+        "modifier": "public",
+        "comments": [
+          "This method will set the current sessions PROPATH value.",
+          "There is no reason for this to be a static method.",
+          "",
+          "    Utilities:setPropath(\"src\":U).",
+          "",
+          "@param ipcProPath The session PROPATH this is to show that ",
+          "                  these can be multi-line comments.",
+          "",
+          "                  This is a new paragraph.",
+          "",
+          "                  ## Example:",
+          "",
+          "                      DEFINE VARIABLE cTest AS CHARACTER NO-UNDO."
+        ],
+        "parameters": [
+          {
+            "name": "ipcProPath",
+            "extent": 0,
+            "modifier": "INPUT",
+            "type": "CHARACTER"
+          }
+        ]
+      },
+      {
+        "name": "setPropath",
+        "signature": "setPropath(IC,IB)",
+        "returnType": "VOID",
+        "abstract": false,
+        "static": true,
+        "extent": 0,
+        "modifier": "public",
+        "comments": [
+          "This method will set the current sessions PROPATH value.",
+          "There is no reason for this to be a static method.",
+          "",
+          "    Utilities:setPropath(\"src\":U).",
+          "",
+          "@param ipcProPath The session PROPATH.",
+          "                  These can be multi-line comments.",
+          "@param iplAppend If true we will append to the current propath, otherwise we will replace it."
+        ],
+        "parameters": [
+          {
+            "name": "ipcProPath",
+            "extent": 0,
+            "modifier": "INPUT",
+            "type": "CHARACTER"
+          },
+          {
+            "name": "iplAppend",
+            "extent": 0,
+            "modifier": "INPUT",
+            "type": "LOGICAL"
+          }
+        ]
+      }
+    ],
+    "constructors": [
+      {
+        "name": "Utilities",
+        "signature": "Utilities()",
+        "returnType": "VOID",
+        "abstract": false,
+        "static": false,
+        "extent": 0,
+        "modifier": "public",
+        "parameters": []
+      },
+      {
+        "name": "Utilities",
+        "signature": "Utilities()",
+        "returnType": "VOID",
+        "abstract": false,
+        "static": true,
+        "extent": 0,
+        "modifier": "private",
+        "parameters": []
+      }
+    ],
+    "destructors": [],
+    "properties": [
+      {
+        "name": "Version",
+        "type": "CHARACTER",
+        "modifier": "public",
+        "comments": [
+          "This property contains the current version of the framewaork. ",
+          "For example 0.0.1"
+        ]
+      }
+    ],
+    "tables": []
+  }
+]

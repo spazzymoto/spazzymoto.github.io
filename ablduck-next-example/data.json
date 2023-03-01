@@ -7,6 +7,9 @@
     "interface": false,
     "serializable": false,
     "enum": false,
+    "using": [
+      " ABLDuck.Core.*"
+    ],
     "useWidgetPool": false,
     "interfaces": [
       "ABLDuck.Core.IPrivateData"
@@ -32,9 +35,63 @@
       "    ASSIGN oBuilder = NEW ABLDuck.Core.Builder().",
       "",
       "@author John Doe",
+      "@internal",
+      "@revision 0.0.1 This was the initial revision",
       ""
     ],
-    "methods": [],
+    "methods": [
+      {
+        "name": "plainMethod",
+        "signature": "plainMethod()",
+        "returnType": "CHARACTER",
+        "abstract": false,
+        "static": false,
+        "extent": 0,
+        "modifier": "public",
+        "comments": [
+          "This method will be plain",
+          "",
+          "@returns The statndard stuff stuff."
+        ],
+        "parameters": []
+      },
+      {
+        "name": "getInternal",
+        "signature": "getInternal()",
+        "returnType": "CHARACTER",
+        "abstract": false,
+        "static": false,
+        "extent": 0,
+        "modifier": "public",
+        "comments": [
+          "This method will return the internal stuff.",
+          "",
+          "    MESSAGE \"INTERNAL ->\" oBuilder:getInternal().",
+          "",
+          "@internal",
+          "@author Joe Blogs",
+          "@revision 0.0.1 This was the initial revision",
+          "@returns The internal stuff."
+        ],
+        "parameters": []
+      },
+      {
+        "name": "getDeprecated",
+        "signature": "getDeprecated()",
+        "returnType": "CHARACTER",
+        "abstract": false,
+        "static": false,
+        "extent": 0,
+        "modifier": "public",
+        "comments": [
+          "This method will be deprecated",
+          "",
+          "@deprecated 0.0.1 Use {@link cls.test} instead.",
+          "@returns The deprecated stuff."
+        ],
+        "parameters": []
+      }
+    ],
     "constructors": [
       {
         "name": "Builder",
@@ -59,6 +116,7 @@
     "interface": true,
     "serializable": false,
     "enum": false,
+    "using": [],
     "useWidgetPool": false,
     "interfaces": [],
     "methods": [],
@@ -81,6 +139,7 @@
     "interface": false,
     "serializable": false,
     "enum": false,
+    "using": [],
     "useWidgetPool": false,
     "interfaces": [],
     "comments": [
@@ -121,6 +180,7 @@
     "interface": false,
     "serializable": false,
     "enum": false,
+    "using": [],
     "useWidgetPool": false,
     "interfaces": [],
     "comments": [
@@ -196,7 +256,10 @@
           "",
           "@param ipcProPath The session PROPATH.",
           "                  These can be multi-line comments.",
-          "@param iplAppend If true we will append to the current propath, otherwise we will replace it."
+          "@param iplAppend If true we will append to the current propath, otherwise we will replace it.",
+          "@revision 0.0.1 This was the initial revision",
+          "@revision 0.0.2 This was the last revision",
+          "@internal"
         ],
         "parameters": [
           {
